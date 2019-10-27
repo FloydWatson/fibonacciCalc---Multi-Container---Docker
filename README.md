@@ -19,7 +19,7 @@ Server standalone:
         docker build -f Dockerfile.dev .
         docker run "id"
 
-will result in err conn refused. this is because no pstgres server is running.
+Will result in err conn refused. This is because no pstgres server is running.
 
 Worker standalone:
 
@@ -30,7 +30,16 @@ docker compose
 
 run from root:
 
-        docker-compose up
+        docker-compose up --build
 
 note: if running on Windows 10 Home on docker cli, docker-compose up may cause errors. Currently the version of Virtual box that comes with docker cli does not support volumes.
 As of yet I have not found a viable solution to this error.
+
+First time starting may cause errors as dervices have not been built properly. try stopping it and starting again with:
+
+        docker-compose up
+
+If you edit files between deploys make sure you clear old services before deploying and re build with:
+
+        docker-compose down
+        docker-compose up --build
