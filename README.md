@@ -7,7 +7,8 @@ The goal of this application is to better understand multi container deployment.
 
 ## Deploy
 
-to deploy as dev:
+to deploy as dev
+
     Client standalone:
 
         docker build -f Dockerfile.dev .
@@ -25,8 +26,10 @@ to deploy as dev:
         docker build -f Dockerfile.dev .
         docker run "id"
 
-docker compose:
+docker compose
+
     run from root:
+
         docker-compose up
 
     note: if running on Windows 10 Home on docker cli, docker-compose up may cause errors. Currently the version of Virtual box that comes with docker cli does not support volumes.
