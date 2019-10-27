@@ -9,16 +9,19 @@ The goal of this application is to better understand multi container deployment.
 
 to deploy as dev:
     Client standalone:
+
         docker build -f Dockerfile.dev .
         docker run -p 3000:3000 "id"
 
     Server standalone:
+
         docker build -f Dockerfile.dev .
         docker run "id"
 
-        will result in err conn refused. this is because no pstgres server is running.
+    will result in err conn refused. this is because no pstgres server is running.
 
     Worker standalone:
+
         docker build -f Dockerfile.dev .
         docker run "id"
 
