@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t floydwatsondocker/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev
+
+script:
+  - docker run -e CI=true floydwatsondocker/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t floydwatsondocker/multi-client ./client
+  - docker build -t floydwatsondocker/multi-nginx ./nginx
+  - docker build -t floydwatsondocker/multi-server ./server
+  - docker build -t floydwatsondocker/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker hub
+  - docker push floydwatsondocker/multi-client
+  - docker push floydwatsondocker/multi-nginx
+  - docker push floydwatsondocker/multi-server
+  - docker push floydwatsondocker/multi-worker
+
+
