@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t floydwatsondocker/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev
+  - docker build -t floydwatsondocker/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true floydwatsondocker/react-test npm test -- --coverage
