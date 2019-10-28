@@ -43,3 +43,16 @@ If you edit files between deploys make sure you clear old services before deploy
 
         docker-compose down
         docker-compose up --build
+
+
+___
+
+## Multi Container CI Workflow
+
+1. Push code to github
+2. TravisCI pulls repo
+3. Travis builds TEST image, tests code
+4. Travis builds PROD images
+5. Travis pushes built PROD images to Docker Hub
+6. Travis pushes project to AWS Elastic Beanstalk
+7. Elastic Beanstalk pulls images from Docker Hub, Deploys
